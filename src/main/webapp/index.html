@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+<title>Simulador Resultado Elecciones Cordoba Ciudad 2015</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</header>
+<body>
+	<div ng-app="myApp" ng-controller="formCtrl" class="container">
+	  <h2>Simulador de Resultados de Elecciones Córdoba Ciudad 2015</h2>
+		<form novalidate class="form-horizontal">
+			<table class="table table-striped">
+				<tr>
+					<td>Cantidad de Bancas:</td>
+					<td><input type="text" ng-model="sim.bancas"></td>
+					<td><p>Total de Votos: {{resultado.totalVotos}}</p></td>
+					<td>
+						<button class="btn btn-success" ng-click="calculate()">CALCULAR</button>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[0].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[0].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[0].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[0].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[1].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[1].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[1].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[1].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[2].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[2].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[2].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[2].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[3].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[3].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[3].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[3].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[4].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[4].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[4].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[4].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[5].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[5].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[5].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[5].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[6].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[6].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[6].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[6].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[7].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[7].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[7].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[7].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[8].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[8].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[8].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[8].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[9].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[9].votos"></td>
+					<td>% votos: {{resultado.porcentajes[sim.votos[9].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[9].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[10].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[10].votos"></td>
+					<td>% votos:
+						{{resultado.porcentajes[sim.votos[10].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[10].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[11].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[11].votos"></td>
+					<td>% votos:
+						{{resultado.porcentajes[sim.votos[11].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[11].candidato]}}</td>
+				</tr>
+				<tr>
+					<td>Candidato/Partido:</td>
+					<td><input type="text" ng-model="sim.votos[12].candidato"></td>
+					<td>Cantidad de Votos:</td>
+					<td><input type="text" ng-model="sim.votos[12].votos"></td>
+					<td>% votos:
+						{{resultado.porcentajes[sim.votos[12].candidato]}}</td>
+					<td>Bancas:
+						{{resultado.bancasPorPartido[sim.votos[12].candidato]}}</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<script>
+var app = angular.module("myApp", [ 'ngResource' ]);
+app.controller("formCtrl", [ '$scope', '$resource',
+		function($scope, $resource) {
+			$scope.resultado = [];
+			$scope.data = [];
+			$scope.simToJSON = function(sim) {
+				var request = '{"bancas":' + $scope.sim.bancas + ', "votos": [';
+				var i = 0;
+				while ($scope.sim.votos[i] != undefined) {
+					request = request + '{"candidato": "' + $scope.sim.votos[i].candidato + '", "votos": ' + $scope.sim.votos[i].votos + '},';
+					i++;
+				}
+				request = request.substring(0, request.length - 1);
+				request = request + ']}'; 
+				return request;
+			};
+			$scope.calculate = function(){
+				var simulator = $resource('/simulator/api/simulator/calculate');
+				simulator.save($scope.simToJSON($scope.sim), function(response){
+					$scope.resultado = response;
+				});
+			};
+		} ]);
+</script>
+
+</body>
+</html>

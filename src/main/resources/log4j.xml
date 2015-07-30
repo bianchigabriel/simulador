@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration debug="false"
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="app_log_file" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${catalina.home}/logs/simulator.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p [%t][%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="rs_log_file" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${catalina.home}/logs/simulator-server-rs.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p [%t][%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<!-- Application Loggers -->
+	<logger name="com.cordoba.elecciones.simulador.rest">
+		<level value="debug" />
+	</logger>
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.hibernate">
+		<level value="warn" />
+	</logger>
+
+	<logger name="redis.clients">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.apache.cxf">
+		<level value="warn" />
+	</logger>
+
+	<!-- level INFO needed to log REST request/response -->
+	<logger name="org.apache.cxf.interceptor" additivity="false">
+		<level value="info" />
+		<!-- specify a dedicated appender for the requests -->
+		<appender-ref ref="rs_log_file" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="app_log_file" />
+	</root>
+
+</log4j:configuration>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+
+	<jaxrs:server id="simulator.wsServer" address="/"
+		staticSubresourceResolution="true" basePackages="com.cordoba.elecciones.simulador.rest">
+		<jaxrs:features>
+			<cxf:logging />
+			<ref bean="commonValidationFeature" />
+		</jaxrs:features>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+		<jaxrs:providers>
+			<ref bean="simulator.jsonProvider" />
+			<bean class="org.apache.cxf.jaxrs.impl.WebApplicationExceptionMapper">
+				<property name="printStackTrace" value="true" />
+			</bean>
+		</jaxrs:providers>
+	</jaxrs:server>
+
+	<bean id="commonValidationFeature" class="org.apache.cxf.validation.BeanValidationFeature" />
+
+	<bean id="simulator.jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider">
+		<property name="mapper" ref="simulator.jacksonMapper" />
+	</bean>
+
+	<bean id="simulator.jacksonMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+
+</beans>
